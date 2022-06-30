@@ -1,0 +1,35 @@
+.machine {
+    margin: 40px;
+    height: auto;
+    width: 800px;
+    background-color: aquamarine;
+    text-align: center;
+}
+
+.box {
+    display: inline-block;
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+    background-color: beige;
+    font-size: 100px;
+    overflow: hidden;
+}
+
+.item {
+
+    animation-name: slotspin;
+    animation-duration: .1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes slotspin {
+
+    0% {
+        transform: translateY(-150px)
+    }
+
+    100% {
+        transform: translateY(150px)
+    }
+}

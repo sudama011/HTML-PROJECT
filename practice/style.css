@@ -1,0 +1,11 @@
+.table {
+    margin: 20px;
+    height: auto;
+    width: 100px;
+    background-color: rgb(71, 192, 99);
+}
+ 
+.canvas {
+    width: 400px;
+    background-color: brown;
+}
