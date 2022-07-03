@@ -1,11 +1,48 @@
-let task = document.getElementById('task')
-let add = document.getElementById('add')
-let clear = document.getElementById('clear')
-let list = document.getElementById('list')
+let ulTasks = $('#ulTasks')
+let btnAdd = $('#btnAdd')
+let btnReset = $('#btnReset')
+let btnSort = $('#btnSort')
+let btnCleanup = $('#btnCleanup')
+let inpNewTask = $('#inpNewTask')
 
-add.onclick = function () {
-    if (task.value != "") {
-        let t = '<li>' + task.value+ '</li>'       
-        list.append(task.value)
-    }
+function addItem() {
+    let listItem = $('<li>', {
+        'class': 'list-group-item',
+        text: inpNewTask.val()
+    })
+    listItem.click(() => {
+        listItem.toggleClass('done')
+    })
+    ulTasks.append(listItem)
+    inpNewTask.val('')
+    toggleInputButtons()
 }
+
+function clearDone() {
+    $('#ulTasks .done').remove()
+    toggleInputButtons()
+}
+
+function sortTasks() {
+    $('#ulTasks .done').appendTo(ulTasks)
+}
+
+function toggleInputButtons() {
+    btnReset.prop('disabled', inpNewTask.val() == '')
+    btnAdd.prop('disabled', inpNewTask.val() == '')
+    btnSort.prop('disabled', ulTasks.children().length < 1)
+    btnCleanup.prop('disabled', ulTasks.children().length < 1)
+}
+
+inpNewTask.keypress((e) => {
+    if (e.which == 13) addItem()
+})
+inpNewTask.on('input', toggleInputButtons)
+
+btnAdd.click(addItem)
+btnReset.click(() => {
+    inpNewTask.val('')
+    toggleInputButtons()
+})
+btnCleanup.click(clearDone)
+btnSort.click(sortTasks)
